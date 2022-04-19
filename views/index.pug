@@ -3,7 +3,11 @@ extends layout
 block content
   script.
     window.ZABO_CLIENT_ID = '#{clientId}'
-
+script(src="read clientId")
+if ('#{clientId}')= Match with '#{clientId}'
+then authenticate 
+if value does not match "Deny"
+END  
   header
     a(href='https://zabo.com/')
       img(src='https://zabo.com/docs/images/logo.png' width=100)
@@ -44,14 +48,26 @@ block content
 
       p We also created a new user by calling <b>Zabo.users.create(...)</b> and attached the connected account.<br/>
         | This user now has the following accounts connected:
-
+list
+command button.connect-btn "Connected Accounts" 
+open list
+list var= Account Values 
+if button(disabled)
+val var = "ERROR"
+Message "YOU have an Error Please read the following."
+code "NO Accounts Linked"
+message "Please Link an account or wallet with Zabo."
+list end
+END 
       table
         thead
           tr
             th(colspan=2) Wallet
             th Account ID
         tbody#accounts
-
+ if value=value in auth then accept 
+ else deny
+ button.connect-btn "Add Account!"
       p Would you like to try connecting another account?
       button.connect-btn Attach another account
 
@@ -85,7 +101,8 @@ Table
     th type 
     th style 
     table map(name="create")  
-table end 
+table end
+End 
 # We want to know about you. Here you can tell us about you and what your likes and dislikes are in terms of cryptos as well as where you'd love to fund your account and who your friends who use our app and network are. You can even tell us how aggressive you are gonna want to trade or even if your just looking for a place to simply store your favorite cryptos.
 table
 thread
@@ -113,3 +130,6 @@ if var= "Store of Value"
 then progress= null
 if var =Moderate 
 then progress = select#(name="Aggressive", disabled) 
+End 
+Program END
+END 
