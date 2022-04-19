@@ -72,3 +72,44 @@ block content
             th Status
             th Date
         tbody#transactions
+table end 
+
+# Next, lets make this app personal, here at Zabo we want your experience to be truly unique. So here you can make your own theme and type of personalization.
+button.connect.btn personalize   
+Table 
+    thread
+    tr
+    th canvas 
+    th color
+    th create 
+    th type 
+    th style 
+    table map(name="create")  
+table end 
+# We want to know about you. Here you can tell us about you and what your likes and dislikes are in terms of cryptos as well as where you'd love to fund your account and who your friends who use our app and network are. You can even tell us how aggressive you are gonna want to trade or even if your just looking for a place to simply store your favorite cryptos.
+table
+thread
+tr 
+th Profile 
+th About 
+th Bio 
+th Account Security
+th Payment 
+th Friends
+th Addresses
+th Wallets 
+th Trading Type 
+table end 
+index 
+tr 
+thread 
+th Textarea "Trading Type."
+list 
+val th 
+Value "Trading Type" variable
+if var = " aggressive" 
+then progress ZABO_CLIENT_ID  
+if var= "Store of Value"
+then progress= null
+if var =Moderate 
+then progress = select#(name="Aggressive", disabled) 
